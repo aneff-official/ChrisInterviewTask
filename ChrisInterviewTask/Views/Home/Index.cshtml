@@ -1,0 +1,90 @@
+﻿@{
+	ViewData["Title"] = "Home";
+}
+
+<div class="container">
+	<form>
+		<input required id="postCode" class="searchInput" type="text" name="postCode" placeholder="Enter post code">
+		<button class="searchButton">Search</button>
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>District</td>
+				<td>Ward</td>
+				<td>Region</td>
+				<td>Latitude</td>
+				<td>Longitude</td>
+			</tr>
+		</thead>
+		<tbody id="info"></tbody>
+	</table>
+</div>
+
+@section Scripts {
+	<script>
+		var table;
+		var count = 0;
+
+		document.addEventListener('DOMContentLoaded', init, false);
+
+		function init() {
+			table = document.getElementsByTagName('table')[0];
+
+			var form = document.getElementsByTagName('form')[0];
+			form.addEventListener('submit', handleSubmit);
+		}
+
+		function handleSubmit(e) {
+			e.preventDefault();
+
+			var postCode = document.getElementById('postCode').value;
+
+			if (!postCode) return;
+
+			var action = 'Home/PostCodeInfo?postCode=' + postCode;
+
+			fetch(action).then(function (response) {
+				return response.json();
+			}).then(function (data) {
+
+				if (data.status !== 200) return;
+
+				count++;
+				table.style.display = 'inline-table';
+
+				var body = table.getElementsByTagName('tbody')[0];
+				var clone = body.cloneNode(true);
+				body.remove();
+
+				var result = data.result;
+				let row = clone.insertRow();
+
+				let id = row.insertCell(0);
+				id.innerHTML = count;
+
+				let district = row.insertCell(1);
+				district.innerHTML = result.admin_district;
+
+				let ward = row.insertCell(2);
+				ward.innerHTML = result.admin_ward;
+
+				let region = row.insertCell(3);
+				region.innerHTML = result.region;
+
+				let lat = row.insertCell(4);
+				lat.innerHTML = result.latitude;
+
+				let lng = row.insertCell(5);
+				lng.innerHTML = result.longitude;
+
+				var temp = body.innerHtml;
+
+				table.appendChild(clone);
+			}).catch(function (err) {
+				console.log("Error", err);
+			});
+		}
+	</script>
+}

@@ -1,0 +1,104 @@
+html {
+    font-size: 1em;
+    color: #000;
+    font-family: Verdana;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to right, #cb2d3e, #ef473a);
+}
+
+.container {
+    margin: 0 5%;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    margin: 5% auto;
+}
+
+form > input {
+    padding: 10px 20px;
+    width: 30%;
+    border-radius: 0;
+    border: 0;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+form > button {
+    background-color: #4aaa4d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 0;
+    border: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+form > button:hover {
+    cursor: pointer;
+    background-color: #39833b;
+}
+
+form > button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+}
+
+table {
+    display: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 4%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 16px;
+}
+
+thead {
+    background-color: #dedede;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: lightgrey;
+}
+
+thead tr td:first-of-type {
+    border-top-left-radius: 10px;
+}
+
+thead tr td:last-of-type {
+    border-top-right-radius: 10px;
+}
+
+tbody tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 10px;
+}
+
+tbody tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 10px;
+}
